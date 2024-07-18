@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="ad.size" content="width=160,height=600">
+        <style>
+            html,body {
+                width:100%;
+                height:100%;
+                margin:0;
+                overflow:hidden;
+            }
+            iframe {
+                border:0;
+                opacity:0;
+                overflow:hidden;
+            }
+        </style>
+        <script src="https://adsby.bidtheatre.com/js/asxhtml5.min.js"></script>
+    </head>
+    <body>
+        <iframe id="banner" style="width:100%;height:100%;"></iframe><script>function zuuviOpenClicktag(clickData, url, target = '_blank', urlPrepend = ''){
+    clickData.click.url = url;
+    var encodedClickData = btoa(JSON.stringify(clickData));
+    encodedClickData = encodedClickData.replaceAll("/", "_").replaceAll("+", "-");
+    window.open(urlPrepend + "https://redirect.zuuvi.com/" + encodedClickData, target);
+}var clicktags = {'global': 'clickurl'};
+window.addEventListener("message", function (event) {
+    if (event.data.type === "zuuvi-click" && ("uuid" in event.data || "href" in event.data)) {
+        var clickurl = asxhtml5.getParam(clicktags[event.data.uuid], event.data.href);
+        zuuviOpenClicktag(event.data.clickData, clickurl);
+    }
+}, false);var iframe = document.getElementById('banner');
+iframe.addEventListener('load', function (event) {
+    iframe.contentWindow.postMessage({clicktagHandler: true}, '*');
+    this.style.opacity = 1;
+});
+
+iframe.src = 'https://cdn.zuuvi.com/qPA3/32fG/H6oI/kug0/eI2k/live/index.html' + window.location.search;</script>
+    </body>
+</html>
